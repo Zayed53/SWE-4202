@@ -1,0 +1,11 @@
+C:\Users\User\source\repos\bookform\bookform\bin\Debug\bookform.exe.config
+C:\Users\User\source\repos\bookform\bookform\bin\Debug\bookform.exe
+C:\Users\User\source\repos\bookform\bookform\bin\Debug\bookform.pdb
+C:\Users\User\source\repos\bookform\bookform\obj\Debug\bookform.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\bookform\bookform\obj\Debug\bookform.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\source\repos\bookform\bookform\obj\Debug\bookform.Form1.resources
+C:\Users\User\source\repos\bookform\bookform\obj\Debug\bookform.Properties.Resources.resources
+C:\Users\User\source\repos\bookform\bookform\obj\Debug\bookform.csproj.GenerateResource.cache
+C:\Users\User\source\repos\bookform\bookform\obj\Debug\bookform.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\bookform\bookform\obj\Debug\bookform.exe
+C:\Users\User\source\repos\bookform\bookform\obj\Debug\bookform.pdb
