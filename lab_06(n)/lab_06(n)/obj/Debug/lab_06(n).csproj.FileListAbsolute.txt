@@ -1,0 +1,11 @@
+C:\Users\User\source\repos\lab_06(n)\lab_06(n)\bin\Debug\lab_06(n).exe.config
+C:\Users\User\source\repos\lab_06(n)\lab_06(n)\bin\Debug\lab_06(n).exe
+C:\Users\User\source\repos\lab_06(n)\lab_06(n)\bin\Debug\lab_06(n).pdb
+C:\Users\User\source\repos\lab_06(n)\lab_06(n)\obj\Debug\lab_06(n).csproj.AssemblyReference.cache
+C:\Users\User\source\repos\lab_06(n)\lab_06(n)\obj\Debug\lab_06(n).csproj.SuggestedBindingRedirects.cache
+C:\Users\User\source\repos\lab_06(n)\lab_06(n)\obj\Debug\lab_06_n_.Form1.resources
+C:\Users\User\source\repos\lab_06(n)\lab_06(n)\obj\Debug\lab_06_n_.Properties.Resources.resources
+C:\Users\User\source\repos\lab_06(n)\lab_06(n)\obj\Debug\lab_06(n).csproj.GenerateResource.cache
+C:\Users\User\source\repos\lab_06(n)\lab_06(n)\obj\Debug\lab_06(n).csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\lab_06(n)\lab_06(n)\obj\Debug\lab_06(n).exe
+C:\Users\User\source\repos\lab_06(n)\lab_06(n)\obj\Debug\lab_06(n).pdb
