@@ -12,150 +12,290 @@ namespace lab07
 {
     public partial class Form1 : Form
     {
-        CSE dummycse = new CSE();
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void AddStudent_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            if (studentradio.Checked)
-            {
-                Student dummystudent = new Student(namebox.Text, Convert.ToInt32(Regnobox.Text), Convert.ToInt32(Contactnobox.Text), Emailbox.Text);
-                if (Begginerradio.Checked)
-                {
-                    dummystudent.level = "Beginner";
-                }
-                else if (Intermediateradio.Checked)
-                {
-                    dummystudent.level = "Intermediate";
-                }
-                else if (Advanceradio.Checked)
-                {
-                    dummystudent.level = "Advance";
-                }
-                dummycse.studentslist.Add(dummystudent);
-                studentenrollcombo.Items.Add(dummystudent.regno);
-            }
-            else if (Professionalradio.Checked)
-            {
-                Professional dummyprofessional = new Professional(namebox.Text, Convert.ToInt32(Regnobox.Text), Convert.ToInt32(Contactnobox.Text), Emailbox.Text);
-                if (Begginerradio.Checked)
-                {
-                    dummyprofessional.level = "Beginner";
-                }
-                else if (Intermediateradio.Checked)
-                {
-                    dummyprofessional.level = "Intermediate";
-                }
-                else if (Advanceradio.Checked)
-                {
-                    dummyprofessional.level = "Advance";
-                }
-                dummycse.professionalslist.Add(dummyprofessional);
-                studentenrollcombo.Items.Add(dummyprofessional.regno);
 
+        }
+
+        Bank dummybank = new Bank();
+        private void Create_Click(object sender, EventArgs e)
+        {
+            if (account_typecombo.Text == "Current")
+            {
+                Current democurrent = new Current(Convert.ToInt32(depositebox.Text));
+                democurrent.suffixadder();
+                dummybank.currentlist.Add(democurrent);
+
+            }else if (account_typecombo.Text == "Savings")
+            {
+                Savings demosaving = new Savings(Convert.ToInt32(depositebox.Text));
+                demosaving.suffixadder();
+                dummybank.savinglist.Add(demosaving);
+
+            }
+            else if (account_typecombo.Text == "Loan")
+            {
+                Loan demoloan = new Loan(Convert.ToInt32(depositebox.Text));
+                demoloan.suffixadder();
+                dummybank.loanlist.Add(demoloan);
+
+            }
+            MessageBox.Show("account created");
+
+        }
+
+        private void infrmacctypecombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (account_typecombo.Text == "Current")
+            {
+                foreach (Current crnt in dummybank.currentlist)
+                    infrmaccountidcombo.Items.Add(crnt.acount_no);
+            }
+            else if (account_typecombo.Text == "Savings")
+            {
+                foreach (Savings crnt in dummybank.savinglist)
+                    infrmaccountidcombo.Items.Add(crnt.acount_no);
+            }
+            else if (account_typecombo.Text == "Loan")
+            {
+                foreach (Loan crnt in dummybank.loanlist)
+                    infrmaccountidcombo.Items.Add(crnt.acount_no);
             }
         }
 
-        private void addcourse_Click(object sender, EventArgs e)
+        private void showinformation_Click(object sender, EventArgs e)
         {
-            //Course.coursefee = Convert.ToInt32(Coursefeebox.Text);
-            Course dummycourse = new Course(Coursetittlebox.Text, Convert.ToInt32(Coursefeebox.Text));
-            if (Coursebegginerradio.Checked)
+            string check = infrmaccountidcombo.Text;
+            if (account_typecombo.Text == "Current")
             {
-                dummycourse.courselevel = "Beginner";
-            }
-            else if (Coursebegginerradio.Checked)
-            {
-                dummycourse.courselevel = "Intermediate";
-            }
-            else if (Coursebegginerradio.Checked)
-            {
-                dummycourse.courselevel = "Advance";
-            }
-            dummycse.courselist.Add(dummycourse);
-            CourseEnrollcombo.Items.Add(dummycourse.coursetittle);
-            //Student.studentcoursefee = Convert.ToInt32(Coursefeebox.Text);
-        }
-        private void CourseEnrollcombo_Click(object sender, EventArgs e)
-        {
-            foreach (Student student in dummycse.studentslist)
-            {
-                int regcheck = Convert.ToInt32(studentenrollcombo.Text);
-                if (student.regno == regcheck)
+                foreach (Current crnt in dummybank.currentlist)
                 {
-                    //student.studentcourses.Add(CourseEnrollcombo.Text);
-
-                    student.studentcoursefee = Convert.ToInt32(Coursefeebox.Text);
-                    Coursefeelbl.Text = Convert.ToString(student.studentcoursefee);
-                }
-            }
-            foreach (Professional pro in dummycse.professionalslist)
-            {
-                int regcheck = Convert.ToInt32(studentenrollcombo.Text);
-                if (pro.regno == regcheck)
-                {
-                    pro.procourses.Add(CourseEnrollcombo.Text);
-
-                    pro.procoursefee = (float)((Convert.ToInt32(Coursefeebox.Text)) * 0.1) + (Convert.ToInt32(Coursefeebox.Text));
-                    Coursefeelbl.Text = (Convert.ToString(pro.procoursefee));
-                }
-            }
-        }
-        private void pay_and_enroll_Click(object sender, EventArgs e)
-        {
-            int regcheck = Convert.ToInt32(studentenrollcombo.Text);
-            foreach (Student student in dummycse.studentslist)
-            {
-                if (student.regno == regcheck)
-                {
-                    student.studentcourses.Add(CourseEnrollcombo.Text);
-
-                    //student.studentcoursefee = Convert.ToInt32(Coursefeebox.Text);
-                    //Coursefeelbl.Text = Convert.ToString(student.studentcoursefee);
-                }
-
-            }
-            foreach (Professional pro in dummycse.professionalslist)
-            {
-                if (pro.regno == regcheck)
-                {
-                    pro.procourses.Add(CourseEnrollcombo.Text);
-
-                    //pro.procoursefee = (float)((Convert.ToInt32(Coursefeebox.Text)) * 0.1)+ (Convert.ToInt32(Coursefeebox.Text));
-                    //Coursefeelbl.Text = (Convert.ToString(pro.procoursefee));
-                }
-
-            }
-        }
-
-        private void showhistory_Click(object sender, EventArgs e)
-        {
-            int number = Convert.ToInt32(checkstudenthistorybox.Text);
-            foreach (Student student in dummycse.studentslist)
-            {
-                if (number == student.regno)
-                {
-                    foreach (string course in student.studentcourses)
+                    if(crnt.acount_no == check)
                     {
-                        listBox1.Items.Add(Convert.ToString(student.regno) + '\t' + course);
+                        listBox1.Items.Add("Current\t" + "accountn:" + crnt.acount_no + "account balance:" + Convert.ToString(crnt.account_balance));
                     }
                 }
             }
-            foreach (Professional pro in dummycse.professionalslist)
+            else if (account_typecombo.Text == "Savings")
             {
-                if (number == pro.regno)
+                foreach (Savings crnt in dummybank.savinglist)
                 {
-                    foreach (string course in pro.procourses)
+                    if (crnt.acount_no == check)
                     {
-                        listBox1.Items.Add(Convert.ToString(pro.regno) + '\t' + course);
+                        listBox1.Items.Add("Saving\t" + "accountn:" + crnt.acount_no + "account balance:" + Convert.ToString(crnt.account_balance));
+                    }
+                }
+            }
+            else if (account_typecombo.Text == "Loan")
+            {
+                foreach (Loan crnt in dummybank.loanlist)
+                {
+                    if (crnt.acount_no == check)
+                    {
+                        listBox1.Items.Add("Loan\t" + "accountn:" + crnt.acount_no + "account balance:" + Convert.ToString(crnt.account_balance));
                     }
                 }
             }
         }
 
-        
+        private void depositetype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (depositetypecombo.Text == "Current")
+            {
+                foreach (Current crnt in dummybank.currentlist)
+                    depositeaccountcombo.Items.Add(crnt.acount_no);
+            }
+            else if (depositetypecombo.Text == "Savings")
+            {
+                foreach (Savings crnt in dummybank.savinglist)
+                    depositeaccountcombo.Items.Add(crnt.acount_no);
+            }
+            else if (depositetypecombo.Text == "Loan")
+            {
+                foreach (Loan crnt in dummybank.loanlist)
+                    depositeaccountcombo.Items.Add(crnt.acount_no);
+            }
+        }
+
+    
+       
+
+        private void Withdrawtypecombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Withdrawtypecombo.Text == "Current")
+            {
+                foreach (Current crnt in dummybank.currentlist)
+                    Withdrawaccountcombo.Items.Add(crnt.acount_no);
+            }
+            else if (Withdrawtypecombo.Text == "Savings")
+            {
+                foreach (Savings crnt in dummybank.savinglist)
+                    Withdrawaccountcombo.Items.Add(crnt.acount_no);
+            }
+            else if (Withdrawtypecombo.Text == "Loan")
+            {
+                foreach (Loan crnt in dummybank.loanlist)
+                    Withdrawaccountcombo.Items.Add(crnt.acount_no);
+            }
+
+        }
+
+        private void Withdraw_Click(object sender, EventArgs e)
+        {
+            string check = Withdrawaccountcombo.Text;
+            if (Withdrawtypecombo.Text == "Current")
+            {
+                foreach (Current crnt in dummybank.currentlist)
+                {
+                    if (crnt.acount_no == check)
+                    {
+                        try
+                        {
+                            crnt.vardate = dateTimePicker2.Value.ToShortDateString();
+                            crnt.Withdraw(Convert.ToInt32(withdrawamntbox.Text));
+                        }catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                }
+            }
+            else if (Withdrawtypecombo.Text == "Savings")
+            {
+                foreach (Savings crnt in dummybank.savinglist)
+                {
+                    if (Convert.ToInt32(lastwithbx.Text) < 5)
+                    {
+                        Exception ex = new Exception();
+                        MessageBox.Show(ex.Message);
+                    }
+                    if (crnt.acount_no == check)
+                    {
+                        crnt.vardate = dateTimePicker2.Value.ToShortDateString();
+                        crnt.Withdraw(Convert.ToInt32(withdrawamntbox.Text));
+                    }
+                }
+            }
+            else if (Withdrawtypecombo.Text == "Loan")
+            {
+                foreach (Loan crnt in dummybank.loanlist)
+                {
+                    if (crnt.acount_no == check)
+                    {
+                        crnt.vardate = dateTimePicker2.Value.ToShortDateString();
+                        crnt.Withdraw(Convert.ToInt32(withdrawamntbox.Text));
+                    }
+                }
+            }MessageBox.Show("Withdrawn");
+
+        }
+
+        private void Deposite_Click(object sender, EventArgs e)
+        {
+            string check = depositeaccountcombo.Text;
+            if (depositetypecombo.Text == "Current")
+            {
+                foreach (Current crnt in dummybank.currentlist)
+                {
+                    if (crnt.acount_no == check)
+                    {
+                        crnt.vardate = dateTimePicker1.Value.ToShortDateString();
+                        crnt.deposite(Convert.ToInt32(newdeposite.Text));
+                    }
+                }
+            }
+            else if (depositetypecombo.Text == "Savings")
+            {
+                foreach (Savings crnt in dummybank.savinglist)
+                {
+                    if (crnt.acount_no == check)
+                    {
+                        crnt.vardate = dateTimePicker1.Value.ToShortDateString();
+                        crnt.deposite(Convert.ToInt32(newdeposite.Text));
+                    }
+                }
+            }
+            else if (depositetypecombo.Text == "Loan")
+            {
+                foreach (Loan crnt in dummybank.loanlist)
+                {
+                    if (crnt.acount_no == check)
+                    {
+                        crnt.vardate = dateTimePicker1.Value.ToShortDateString();
+                        crnt.deposite(Convert.ToInt32(newdeposite.Text));
+                    }
+                }
+            }
+            MessageBox.Show("Deposite");
+        }
+
+        private void historytypecombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (historytypecombo.Text == "Current")
+            {
+                foreach (Current crnt in dummybank.currentlist)
+                    historynocombo.Items.Add(crnt.acount_no);
+            }
+            else if (historytypecombo.Text == "Savings")
+            {
+                foreach (Savings crnt in dummybank.savinglist)
+                    historynocombo.Items.Add(crnt.acount_no);
+            }
+            else if (historytypecombo.Text == "Loan")
+            {
+                foreach (Loan crnt in dummybank.loanlist)
+                    historynocombo.Items.Add(crnt.acount_no);
+            }
+
+        }
+
+        private void History_Click(object sender, EventArgs e)
+        {
+            string check = historynocombo.Text;
+            if (historytypecombo.Text == "Current")
+            {
+                foreach (Current crnt in dummybank.currentlist)
+                {
+                    if (crnt.acount_no == check)
+                    {
+                        foreach(String id in crnt.depositlist)
+                        {
+                            historylist.Items.Add(id);
+                        }
+                    }
+                }
+            }
+            else if (historytypecombo.Text == "Savings")
+            {
+                foreach (Savings crnt in dummybank.savinglist)
+                {
+                    if (crnt.acount_no == check)
+                    {
+                        foreach (String id in crnt.depositlist)
+                        {
+                            historylist.Items.Add(id);
+                        }
+                    }
+                }
+            }
+            else if (historytypecombo.Text == "Loan")
+            {
+                foreach (Loan crnt in dummybank.loanlist)
+                {
+                    if (crnt.acount_no == check)
+                    {
+                        foreach (String id in crnt.depositlist)
+                        {
+                            historylist.Items.Add(id);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
